@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noteapp/widgets/add_note_widget.dart';
 import 'package:noteapp/widgets/coustom_card.dart';
 import 'package:noteapp/widgets/notes_list_view.dart';
 
@@ -34,16 +35,14 @@ static String id='Notes View';
         ],
       ),
       body: NotesListView(),
-      floatingActionButton: Container(
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Colors.blue
-        ),
-        child: IconButton(
-          color: Colors.black,
-          icon: Icon(Icons.add),
-        onPressed: (){},
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+         showModalBottomSheet(context: context, builder: (context){
+          return AddNoteButtomSheet();
+         });
+      },
+      child: Icon(Icons.add,color: Colors.black,),
+      backgroundColor: Colors.blue,
       ),
     );
   }
