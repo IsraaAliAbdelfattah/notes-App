@@ -3,9 +3,9 @@ import 'package:noteapp/constanse.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key,
+    super.key, this.onpressed,
   });
-
+final void Function()? onpressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +15,7 @@ class CustomButton extends StatelessWidget {
           backgroundColor: MaterialStatePropertyAll(kprimarycolor),
           
         ),
-        onPressed: (){},
+        onPressed: onpressed,
        child: Text('add',style: TextStyle(color: Colors.black),)),
     );
   }
