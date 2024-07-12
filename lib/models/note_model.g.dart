@@ -6,17 +6,17 @@ part of 'note_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class NoteModlAdapter extends TypeAdapter<NoteModl> {
+class NoteModlAdapter extends TypeAdapter<NoteModel> {
   @override
   final int typeId = 0;
 
   @override
-  NoteModl read(BinaryReader reader) {
+  NoteModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return NoteModl(
+    return NoteModel(
       title: fields[0] as String,
       subtitle: fields[1] as String,
       date: fields[2] as String,
@@ -25,7 +25,7 @@ class NoteModlAdapter extends TypeAdapter<NoteModl> {
   }
 
   @override
-  void write(BinaryWriter writer, NoteModl obj) {
+  void write(BinaryWriter writer, NoteModel obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
