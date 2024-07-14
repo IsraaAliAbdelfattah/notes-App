@@ -3,9 +3,10 @@ import 'package:noteapp/constanse.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
-    super.key, this.onpressed,
+    super.key, this.onpressed,  this.isloading=false,
   });
 final void Function()? onpressed;
+final bool isloading;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +17,10 @@ final void Function()? onpressed;
           
         ),
         onPressed: onpressed,
-       child: Text('add',style: TextStyle(color: Colors.black),)),
+       child:isloading?CircularProgressIndicator(
+        color: Colors.black,
+        
+       ): Text('add',style: TextStyle(color: Colors.black),)),
     );
   }
 }
