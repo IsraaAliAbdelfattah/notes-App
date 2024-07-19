@@ -9,18 +9,19 @@ final void Function()? onpressed;
 final bool isloading;
   @override
   Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
     return Container(
       width: MediaQuery.of(context).size.width,
       child: ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(kprimarycolor),
+        style: const ButtonStyle(
+          backgroundColor: WidgetStatePropertyAll(kprimarycolor),
           
         ),
         onPressed: onpressed,
-       child:isloading?CircularProgressIndicator(
+       child:isloading?const CircularProgressIndicator(
         color: Colors.black,
         
-       ): Text('add',style: TextStyle(color: Colors.black),)),
+       ): const Text('add',style: TextStyle(color: Colors.black),)),
     );
   }
 }

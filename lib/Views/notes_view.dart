@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noteapp/cubits/notes_cubits/notes_cubit.dart';
+import 'package:noteapp/cubits/notes_cubit/notes_cubit.dart';
 import 'package:noteapp/widgets/add_note_widget.dart';
-import 'package:noteapp/widgets/coustom_card.dart';
 import 'package:noteapp/widgets/notes_list_view.dart';
 
-class NotesView extends StatelessWidget {
+class NotesView extends StatefulWidget {
   const NotesView({super.key});
-static String id='Notes View';
+  static String id = 'Notes View';
+
+  @override
+  State<NotesView> createState() => _NotesViewState();
+}
+
+class _NotesViewState extends State<NotesView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -16,10 +21,13 @@ static String id='Notes View';
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Text('Notes',style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-          ),),
+          title: const Text(
+            'Notes',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
@@ -27,28 +35,34 @@ static String id='Notes View';
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                  color:Colors.white.withOpacity(.05) ,
-                  shape: BoxShape.circle
-                  ),
+                    color: Colors.white.withOpacity(.05),
+                    shape: BoxShape.circle),
                 child: Center(
-                  child: IconButton(onPressed: (){}, 
-                  icon: Icon(Icons.search,)),
+                  child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.search,
+                      )),
                 ),
               ),
             ),
           ],
         ),
-        body: NotesListView(),
+        body: const NotesListView(),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-           showModalBottomSheet(
-            isScrollControlled: true,
-            context: context, builder: (context){
-            return AddNoteButtomSheet();
-           });
-        },
-        child: Icon(Icons.add,color: Colors.black,),
-        backgroundColor: Colors.blue,
+          onPressed: () {
+            showModalBottomSheet(
+                isScrollControlled: true,
+                context: context,
+                builder: (context) {
+                  return const AddNoteButtomSheet();
+                });
+          },
+          backgroundColor: Colors.blue,
+          child: const Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
         ),
       ),
     );

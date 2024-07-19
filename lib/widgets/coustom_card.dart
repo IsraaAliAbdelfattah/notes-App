@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noteapp/Views/edit_note_view.dart';
+import 'package:noteapp/cubits/notes_cubit/notes_cubit.dart';
+import 'package:noteapp/models/note_model.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({super.key});
+  const CustomCard({super.key, required this.notes});
+final NoteModel notes;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +18,12 @@ class CustomCard extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+            // ignore: sized_box_for_whitespace
             child: Container(
               height: 200,
               width: double.infinity,
-              child: Card(
-                color: Color(0xffFFCC80),
+              child:  Card(
+                color: Color(notes.color),
               ),
             ),
           ),
@@ -31,31 +35,31 @@ class CustomCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text('Flutter Tips',style: TextStyle(
+                    Text(notes.title,style: const TextStyle(
                       fontSize: 24,
                       color: Colors.black
                     ),),
-                    SizedBox(
+                    const SizedBox(
                       width: 140,
                     ),
-                    IconButton(onPressed: (){},
-                     icon: Icon(Icons.delete,color: Colors.black,),),
+                    IconButton(onPressed: (){
+                      notes.delete();
+                      BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    },
+                     icon: const Icon(Icons.delete,color: Colors.black,),),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text('Build Your Career With',style: TextStyle(
+                Text(notes.subtitle,style: TextStyle(
                   color: Colors.black.withOpacity(.3),
                   fontSize: 18
                 ),),
-                Text('Tharwat Samy',style: TextStyle(
-                  color: Colors.black.withOpacity(.3),
-                  fontSize: 18
-                ),),
+                
                 Padding(
                   padding: const EdgeInsets.only(left: 210,top: 20),
-                  child: Text('Jul 9,2024',style: TextStyle(
+                  child: Text(notes.date,style: TextStyle(
                   color: Colors.black.withOpacity(.3),
                     fontSize: 15
                   ),),

@@ -1,20 +1,28 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:meta/meta.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:noteapp/constanse.dart';
 import 'package:noteapp/cubits/add_note_cubit/add_note_state.dart';
 import 'package:noteapp/models/note_model.dart';
-class AddNotesCubit extends Cubit<AddNotesState>{
-AddNotesCubit():super (AddNotesInitial());
-addnote(NoteModel note)async{
-  emit(AddNotesLoading());
-try {
-  var notesBox = Hive.box(knotebox);
-   await notesBox.add(note);
-   emit(AddNotesSucess());
-} catch (e) {
-  // TODO
-  emit(AddNotesFailure(errormessage: e.toString()));
-}
-}
+
+
+
+
+//part 'add_note_state.dart';
+
+class AddNoteCubit extends Cubit<AddNoteState> {
+  AddNoteCubit() : super(AddNoteInitial());
+
+  Color color= Colors.primaries[0];
+
+  addNote(NoteModel note) async {
+    emit(AddNoteLoading());
+    try {
+      var notesBox = Hive.box<NoteModel>(knotebox);
+      await notesBox.add(note);
+      emit(AddNoteSuccess());
+    } catch (e) {
+      emit(AddNoteFailure(e.toString()));
+    }
+  }
 }

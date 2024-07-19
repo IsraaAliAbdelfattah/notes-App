@@ -15,19 +15,19 @@ static String id='Edit Note View';
              color:Colors.white.withOpacity(.05) ,
             borderRadius: BorderRadius.circular(16)),
           child: IconButton(onPressed: (){},
-           icon: Icon(Icons.check)),
+           icon: const Icon(Icons.check)),
         ),
       )
     ],
-    title: Text('Edit Note'),
+    title: const Text('Edit Note'),
     ),
     body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: ListView(
-        children: [
-          CustomTextField(text: 'Title'),
-          SizedBox(height: 16,),
-          CustomTextField(text: 'Content',maxlines: 7,),
+      child:  ListView(
+        children:const [
+           CustomTextField(text: 'Title'),
+           SizedBox(height: 16,),
+           CustomTextField(text: 'Content',maxlines: 7,),
         ],
       ),
     ),

@@ -22,13 +22,14 @@ final void Function(String?)? onsaved;
             enabledBorder: BuildBorder(),
             focusedBorder: BuildBorder(kprimarycolor),
             hintText: text,
-             hintStyle: TextStyle(
+             hintStyle: const TextStyle(
               color: kprimarycolor,
             ),
           ),
         );
   }
 
+  // ignore: non_constant_identifier_names
   OutlineInputBorder BuildBorder([color]) {
     return OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
