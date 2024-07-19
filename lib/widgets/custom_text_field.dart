@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/constanse.dart';
+import 'package:noteapp/constants.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key,required this.text,  this.maxlines=1, this.onsaved});
@@ -14,6 +14,7 @@ final void Function(String?)? onsaved;
         if(value?.isEmpty??true){
           return 'Value is required';
         }
+        return null;
       },
       cursorColor: kprimarycolor,
       maxLines: maxlines,
